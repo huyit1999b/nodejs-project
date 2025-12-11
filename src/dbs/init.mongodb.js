@@ -1,6 +1,6 @@
 'use strict';
 const { default: mongoose, mongo } = require('mongoose');
-require('dotenv').config();
+const config = require('../configs/config.mongodb');
 
 class Database {
   constructor() {
@@ -14,11 +14,11 @@ class Database {
     }
 
     mongoose
-      .connect(process.env.MONGODB_CONN, {
+      .connect(config.mongodb.conn, {
         maxPoolSize: 50,
       })
       .then(() => {
-        console.log('Connected to MongoDB PRD');
+        console.log('Connected to MongoDB successfully');
       })
       .catch((err) => {
         console.error('Error connecting to MongoDB', err);
